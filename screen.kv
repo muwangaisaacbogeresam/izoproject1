@@ -1,0 +1,182 @@
+
+WindowManager:
+    SellScreen:
+    ProductRegisterScreen:
+    StockingScreen:
+    ManagementScreen:
+    TotalSaleScreen:
+    ExpenseScreen:
+    BalSheetScreen:
+    CreditSaleScreen:
+
+<SellScreen>:
+    name: "Sell"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        MyButtons:
+            #pos_hint:{'top':.98}
+
+        Label:
+            text:"sale"
+            font_size: 20
+        
+<ProductRegisterScreen>:
+    name: "Product"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        MyButtons:
+            #pos_hint:{'top':.8}
+
+        Label:
+            text:"Register pdt"
+            font_size:20
+       
+<StockingScreen>:
+    name: "Stock Up"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        #size_hint:(1, .5)
+        MyButtons:
+            #pos_hint:{'top':.8}
+            
+        
+        Label:
+            #text:"Stocking"
+            #font_size:20
+
+<ManagementScreen>:
+    name: "Mgt"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: dp(5)
+        #size: root.width, root.height
+        size_hint:(1, .12)
+        pos_hint:{'top':.99}
+
+        MyButtons:
+            #pos_hint:{'top':.9}
+            #size_hint:(1, .05)
+            
+        
+        MyButtons2:
+            #pos_hint:{'top':.}
+            #size_hint:(1, .05)
+              
+
+<TotalSaleScreen>:
+    name: "Ttl sale"
+
+    BoxLayout
+        orientation:'vertical'
+        size_hint:(1, .12)
+        pos_hint:{'top':1}
+        spacing:dp(6)
+
+        MyButtons:
+
+        MyButtons2:
+
+<BalSheetScreen>:
+    name: "BalSheet"
+
+    BoxLayout
+        orientation:'vertical'
+        size_hint:(1, .12)
+        pos_hint:{'top':1}
+        spacing:dp(6)
+
+        MyButtons:
+
+        MyButtons2:
+
+
+
+<ExpenseScreen>:
+    name: "expense"
+
+    BoxLayout
+        orientation:'vertical'
+        size_hint:(1, .12)
+        pos_hint:{'top':1}
+        spacing:dp(6)
+
+        MyButtons:
+
+        MyButtons2:
+
+
+<MyButtons@BoxLayout>:
+    orientation:'vertical'
+    size_hint: (1, .05)
+    #height: dp(20)
+    pos_hint:{"top":.01}
+
+    BoxLayout:
+        size_hint:(1, 1)
+        Button:
+            text:"sell"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            on_release:
+                app.root.current = "Sell"
+                
+        Button:
+            text:"Products"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            on_release:
+                app.root.current = "Product"
+        
+        Button:
+            text:"Stock Up"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            on_release:
+                app.root.current = "Stock Up" 
+
+        Button:
+            text:"Mgt"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            on_release:
+                app.root.current = "Ttl sale" 
+                
+<MyButtons2@BoxLayout>:
+    orientation : 'vertical'
+    size_hint: (1, None)
+    height: 30
+    #pos_hint:{"top":.}
+
+    BoxLayout:
+        size_hint:(1, 1)
+        Button:
+            text:"Ttl sale"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            on_release:
+                app.root.current = "Ttl sale"
+                
+        Button:
+            text:"expenses"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            on_release:
+                app.root.current = "expense"
+        
+        Button:
+            text:"Bal.sheet"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            on_release:
+                app.root.current = "BalSheet" 
+
+        Button:
+            text:"Edit"
+            size_hint:(.25, 1)
+            #pos_hint:{"top":.6}
+            #on_release:
+                #app.root.current = "edit" 
+                
