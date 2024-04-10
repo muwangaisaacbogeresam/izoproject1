@@ -20,12 +20,12 @@ jobs:
       - name: Cache Buildozer global directory
         uses: actions/cache@v2
         with:
-          path: .
-          key: -${{ hashFiles('buildozer.spec') }} # Replace with your path
+          path: .buildozer_global
+          key: buildozer-global-${{ hashFiles('buildozer.spec') }} # Replace with your path
 
       - uses: actions/cache@v2
         with:
-          path: .
+          path: .buildozer
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
 
       - name: Build with Buildozer
