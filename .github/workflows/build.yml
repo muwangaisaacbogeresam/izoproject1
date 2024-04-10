@@ -21,11 +21,11 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .
-          key: ${{ hashFiles('buildozer.spec') }} # Replace with your path
+          key: -${{ hashFiles('buildozer.spec') }} # Replace with your path
 
       - uses: actions/cache@v2
         with:
-          path: .buildozer
+          path: .
           key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-${{ hashFiles('buildozer.spec') }}
 
       - name: Build with Buildozer
