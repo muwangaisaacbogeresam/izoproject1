@@ -1,37 +1,28 @@
-name: CI
+name: Build for Android
 on:
   push:
-    branches: [ main ]
+    branches:
+      -main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
+# Build job. Builds app for Android with Buildozer
+build-android:
+  name: Build for Android
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build with Buildozer
+      uses: ArtemSBulgakov/buildozer-action@v1
+      id: buildozer
       with:
-        python-version: '3.7'
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y python3-pip build-essential git python3 python3-dev ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
-    - name: Install Buildozer
-      run: |
-        pip install buildozer
-    - name: Initialize Buildozer
-      run: |
-        buildozer init
-    - name: Set up Buildozer config
-      run: |
-        sed -i 's/log_level = 1/log_level = 2/' buildozer.spec
-         sed -i 's/#android.ndk_path =/android.ndk_path = "\/usr\/local\/share\/android-ndk"/' buildozer.spec
-    - name: Build the APK
-      run: |
-        buildozer -v android debug
-    - name: Deploy APK
+        workdir: <specify the directory of the app no don't mention this the app files are in root directory>
+        buildozer_version: stable
+
+    - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
         name: package
-        path: bin/*.apk
-
+        path: ${{ steps.buildozer.outputs.filename }}
